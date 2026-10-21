@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zero-Visibility Vision System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --bg-card: #020617;
+            --bg-main: radial-gradient(circle at top, #1d4ed8 0, #020617 55%);
+            --accent: #38bdf8;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 16px 24px;
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid #1f2937;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header .title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        header .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .outer-container {
+            max-width: 1150px;
+            width: 100%;
+            margin: 24px auto 40px auto;
+            padding: 0 16px;
+            flex: 1;
+        }
+
+        .container {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 14px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+            padding: 24px 22px 30px 22px;
+            border: 1px solid #1f2937;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0 0 6px 0;
+            font-size: 1.8rem;
+        }
+
+        .tagline {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #22c55e;
+        }
+
+        .form-section {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            align-items: center;
+        }
+
+        input[type="file"],
+        select {
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #1f2937;
+            background: #020617;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            max-width: 260px;
+            width: 100%;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            margin-top: 6px;
+            transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.65);
+        }
+
+        .mode-label {
+            text-align: center;
+            margin-top: 18px;
+            color: #a5b4fc;
+            font-size: 0.85rem;
+        }
+
+        .images-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 22px;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .image-card {
+            background: var(--bg-card);
+            padding: 12px;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+            border: 1px solid #1f2937;
+        }
+
+        .image-card-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #111827;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            color: var(--accent);
+        }
+
+        .download-link:hover {
+            text-decoration: underline;
+        }
+
+        .about-section {
+            margin-top: 26px;
+            padding-top: 16px;
+            border-top: 1px dashed #1f2937;
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+            gap: 16px;
+        }
+
+        .about-section h2 {
+            font-size: 1rem;
+            margin: 0 0 6px 0;
+        }
+
+        .about-section p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: left;
+        }
+
+        .bullets {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding-left: 18px;
+            margin: 4px 0 0 0;
+        }
+
+        footer {
+            font-size: 0.75rem;
+            text-align: center;
+            color: var(--text-muted);
+            padding: 10px 0 18px 0;
+        }
+
+        @media (max-width: 800px) {
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="title">Zero-Visibility Vision System</div>
+    <div class="subtitle">Fog • Smoke • Low-Light • Night — enhanced using AI-powered image processing</div>
+</header>
+
+<div class="outer-container">
+    <div class="container">
+        <h1>Enhance Visibility in Extreme Conditions</h1>
+        <p class="tagline">
+            Upload a low-quality image affected by fog, smoke or low light and get a clearer, more realistic version.
+        </p>
+
+        <div class="badge-row">
+            <div class="badge"><span class="dot"></span> Real-time enhancement (demo)</div>
+            <div class="badge">Computer Vision • Image Restoration</div>
+            <div class="badge">Built using Python, Flask &amp; OpenCV</div>
+        </div>
+
+        <div class="form-section">
+            <form action="/enhance" method="POST" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div>
+                        <label for="image">Upload an image (JPG / PNG):</label><br>
+                        <input type="file" name="image" id="image" required>
+                    </div>
+                    <div>
+                        <label for="mode">Select enhancement mode:</label><br>
+                        <select name="mode" id="mode" required>
+                            <option value="">-- Choose Mode --</option>
+                            <option value="low_light" {% if mode == 'low_light' %}selected{% endif %}>Low-Light / Night</option>
+                            <option value="fog" {% if mode == 'fog' %}selected{% endif %}>Fog / Haze</option>
+                            <option value="smoke" {% if mode == 'smoke' %}selected{% endif %}>Smoke / Noise</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">✨ Enhance Vision</button>
+            </form>
+        </div>
+
+        {% if original_image and processed_image %}
+        <div class="mode-label">
+            <strong>Mode:</strong>
+            {% if mode == 'low_light' %} Low-Light / Night Enhancement – boosts brightness, contrast & clarity. {% endif %}
+            {% if mode == 'fog' %} Fog / Haze Removal – dehazes the scene and restores details. {% endif %}
+            {% if mode == 'smoke' %} Smoke / Noise Reduction – cleans noise while preserving edges. {% endif %}
+        </div>
+
+        <div class="images-section">
+            <div class="image-card">
+                <div class="image-card-title">Original Image</div>
+                <img src="{{ original_image }}" alt="Original Image">
+            </div>
+            <div class="image-card">
+                <div class="image-card-title">Enhanced Image</div>
+                <img src="{{ processed_image }}" alt="Processed Image">
+                <a class="download-link" href="{{ processed_image }}" download>
+                    ⬇ Download enhanced image
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="about-section">
+            <div>
+                <h2>About this project</h2>
+                <p>
+                    The Zero-Visibility Vision System improves images captured in harsh visual conditions such as fog,
+                    smoke and low-light environments. It combines classical image processing techniques with
+                    modern enhancement strategies to reconstruct a cleaner, more realistic view of the scene.
+                </p>
+            </div>
+            <div>
+                <h2>Pipeline (simplified)</h2>
+                <ul class="bullets">
+                    <li>Pre-processing: white balancing &amp; normalization</li>
+                    <li>Mode-specific enhancement: dehazing, denoising, or low-light boosting</li>
+                    <li>Post-processing: sharpening &amp; contrast refinement for a natural look</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    Zero-Visibility Vision System • Academic / Hackathon Demo
+</footer>
+</body>
+</html>
